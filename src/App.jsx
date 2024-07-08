@@ -1,4 +1,4 @@
-import './app.scss'
+import './styles/main.scss';
 import React, {useEffect, useState} from "react"
 import sanityClient from "./client"
 
