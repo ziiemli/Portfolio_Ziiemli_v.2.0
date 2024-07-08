@@ -1,6 +1,8 @@
 import './styles/main.scss';
 import React, {useEffect, useState} from "react"
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import sanityClient from "./client"
+import Start from './pages/Start';
 
 
 
@@ -23,10 +25,11 @@ const App = () => {
     console.log(movies)
   
     return (
-        <div>
-            <h1 className='vert'>HELLO</h1>
-            {movies&&movies.map((movie,index)=> <div>{movie.title}</div>)}
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Start />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
