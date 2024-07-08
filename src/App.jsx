@@ -1,33 +1,18 @@
 import './styles/main.scss';
-import React, {useEffect, useState} from "react"
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import sanityClient from "./client"
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Start from './pages/Start';
+import Home from './pages/Home';
 
 
 
 const App = () => {
-    
-    const [movies, setMovies] = useState(null)
-
-    useEffect(() => {
-        sanityClient
-        .fetch(
-            `*[_type=="movie"]{
-    title,
-    overview,
-    releaseDate,
-    }`
-        )
-            .then((data) => setMovies(data))
-            .catch(console.error)
-    })
-    console.log(movies)
   
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Start />} />
+            <Route path="/" element={<Navigate to="/en" />} /> {/* Rediriger vers anglais par défaut */}
+            <Route path="/:lang" element={<Start />} /> {/* Route dynamique pour la langue */}
+            <Route path="/:lang/home" element={<Home />} /> {/* Route dynamique pour la langue */}
             </Routes>
         </BrowserRouter>
     )
